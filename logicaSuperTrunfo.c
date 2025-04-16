@@ -8,9 +8,9 @@
 int main() {
     // DEFINIÇÃO DAS VARIÁVEIS
     // Carta 1
-    char* estado_A;
-    char* codigo_carta_A;
-    char* nome_cidade_A;
+    char estado_A[20];
+    char codigo_carta_A[3];
+    char nome_cidade_A[20];
     int populacao_A;
     float area_A;
     float PIB_A;
@@ -19,9 +19,9 @@ int main() {
     float densidade_populacional_A;
     float PIB_per_capita_A;
     // Carta 2
-    char* estado_B;
-    char* codigo_carta_B;
-    char* nome_cidade_B;
+    char estado_B[20];
+    char codigo_carta_B[3];
+    char nome_cidade_B[20];
     int populacao_B;
     float area_B;
     float PIB_B;
@@ -74,25 +74,22 @@ int main() {
     densidade_populacional_B = (float) populacao_B / area_B;
     PIB_per_capita_B = PIB_B / (float) populacao_B;
 
-    // COMPARAÇÃO DE CARTAS:
+    // COMPARAÇÃO DE CARTAS E EXIBIÇÃO DO RESULTADO:
     atributo_de_comparacao = "populacao";
+
+    printf("\n# COMPARAÇÃO DE CARTAS (Atributo: %s): \n", atributo_de_comparacao);
+    printf("Carta 1 - %s (%s): %i\n", nome_cidade_A, codigo_carta_A, populacao_A);
+    printf("Carta 2 - %s (%s): %i\n", nome_cidade_B, codigo_carta_B, populacao_B);
     // Desenvolva a lógica de comparação entre duas cartas.
     // Utilize estruturas de decisão como if, if-else para comparar atributos como população, área, PIB, etc.
-
-    // Exemplo:
-    // if (populacaoA > populacaoB) {
-    //     printf("Cidade 1 tem maior população.\n");
-    // } else {
-    //     printf("Cidade 2 tem maior população.\n");
-    // }
-
-    // EXIBIÇÃO DOS RESULTADOS:
-    //printf("\n# COMPARAÇÃO DE CARTAS (Atributo: %s): \n", atributo_de_comparacao);
-    //printf("Carta 1 - %s (%s): %i\n", nome_cidade_A, codigo_carta_A, populacao_A);
-    //printf("Carta 2 - %s (%s): %i\n", nome_cidade_B, codigo_carta_B, populacao_B);
-    //printf("Resultado: Carta 1 (São Paulo) venceu!\n");
-    // Exemplo:
-    // printf("A cidade vencedora é: %s\n", cidadeVencedora);
+    
+    if (populacao_A > populacao_B) {
+        printf("Resultado: Carta 1 (%s) venceu!\n", nome_cidade_A);
+    } else if (populacao_A < populacao_B){
+        printf("Resultado: Carta 1 (%s) venceu!\n", nome_cidade_B);
+    } else {
+        printf("Resultado: Empate entre as cartas!\n");
+    } 
     
     printf("\nPROGRAMA FINALIZADO\n");
 
