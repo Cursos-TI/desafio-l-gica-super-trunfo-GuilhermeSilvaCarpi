@@ -31,6 +31,8 @@ int main() {
     float PIB_per_capita_B;
     // Variaveis de comparação entre cartas
     char* atributo_de_comparacao;
+    int escolha;
+    float atributo_A, atributo_B;
 
     // CADASTRO DAS CARTAS:
     // Carta 1
@@ -68,30 +70,96 @@ int main() {
     scanf("%d", &pontos_turisticos_B);
 
     // CALCULAR DENSIDADE POPULCIONAL E PIB_PER_CAPTA
+    // Carta 1
     densidade_populacional_A = (float) populacao_A / area_A;
     PIB_per_capita_A = PIB_A / (float) populacao_A;
-    
+    // Carta 2
     densidade_populacional_B = (float) populacao_B / area_B;
     PIB_per_capita_B = PIB_B / (float) populacao_B;
 
-    // COMPARAÇÃO DE CARTAS E EXIBIÇÃO DO RESULTADO:
-    atributo_de_comparacao = "populacao";
+    // MENU DE ESCOLHA DE ATRIBUTO A SER COMPARADO
+    printf("\nESCOLHA UM ATRIBUTO PARA COMPARAR AS CARTAS\n");
+    printf("[1] População\n");
+    printf("[2] Área\n");
+    printf("[3] PIB\n");
+    printf("[4] Número de pontos turísticos\n");
+    printf("[5] Densidade demográfica\n");
+    printf("Escolha: ");
+    scanf("%d", &escolha);
+    
+    // DEFININFO OS ATRIBUTOS DE COMPARAÇÃO
+    switch (escolha)
+    {
+    // População
+    case 1:
+        atributo_de_comparacao = "Populacao";
+        atributo_A = (float) populacao_A;
+        atributo_B = (float) populacao_B;
+        break;
+    // Área
+    case 2:
+        atributo_de_comparacao = "Área";
+        atributo_A = area_A;
+        atributo_B = area_B;
+        break;
+    // PIB
+    case 3:
+        atributo_de_comparacao = "PIB";
+        atributo_A = PIB_A;
+        atributo_B = PIB_B;
+        break;
+    // Número de pontos turísticos
+    case 4:
+        atributo_de_comparacao = "Número de pontos turísticos";
+        atributo_A = (float) pontos_turisticos_A;
+        atributo_B = (float) pontos_turisticos_B;
+        break;
+    // Densidade demográfica
+    case 5:
+        atributo_de_comparacao = "Densidade demográfica";
+        atributo_A = densidade_populacional_A;
+        atributo_B = densidade_populacional_B;
+        break;
+    // Escolha inválida
+    default:
+        printf("Escolha inválida\n");
+        break;
+    }
 
+    // EXIBIÇÃO DE INFORMAÇÕES GERAIS
     printf("\n# COMPARAÇÃO DE CARTAS (Atributo: %s): \n", atributo_de_comparacao);
-    printf("Carta 1 - %s (%s): %i\n", nome_cidade_A, codigo_carta_A, populacao_A);
-    printf("Carta 2 - %s (%s): %i\n", nome_cidade_B, codigo_carta_B, populacao_B);
-    // Desenvolva a lógica de comparação entre duas cartas.
-    // Utilize estruturas de decisão como if, if-else para comparar atributos como população, área, PIB, etc.
+    printf("Carta 1 - %s (%s): %f\n", nome_cidade_A, codigo_carta_A, atributo_A);
+    printf("Carta 2 - %s (%s): %f\n", nome_cidade_B, codigo_carta_B, atributo_B);
+    printf("Resultado: ");
+
+    // DEFININFO CARTA VENCEDORA
+    // Se os atributos comparados forem iguais (empate)
+    if (atributo_A == atributo_B){
+        printf("Empate entre as cartas!\n");
+    } else{
+        // Se a comparação for de densidade populacional
+        if (atributo_de_comparacao == "Densidade demográfica"){
+            // Se carta 1 vencer
+            if (atributo_A < atributo_B){
+                printf("Carta 1 (%s) venceu!", nome_cidade_A);
+            // Se carta 2 vencer
+            } else {
+                printf("Carta 2 (%s) venceu!", nome_cidade_B);
+            }
+        // Se a comparação NÃO for de densidade populacional
+        } else{
+            // Se carta 1 vencer
+            if (atributo_A > atributo_B){
+                printf("Carta 1 (%s) venceu!", nome_cidade_A);
+            // Se carta 2 vencer
+            } else {
+                printf("Carta 2 (%s) venceu!", nome_cidade_B);
+            }
+        }
+    }
     
-    if (populacao_A > populacao_B) {
-        printf("Resultado: Carta 1 (%s) venceu!\n", nome_cidade_A);
-    } else if (populacao_A < populacao_B){
-        printf("Resultado: Carta 1 (%s) venceu!\n", nome_cidade_B);
-    } else {
-        printf("Resultado: Empate entre as cartas!\n");
-    } 
-    
-    printf("\nPROGRAMA FINALIZADO\n");
+    // FINALIZANDO O PROGRAMA
+    printf("\n\nPROGRAMA FINALIZADO\n\n");
 
     return 0;
 }
